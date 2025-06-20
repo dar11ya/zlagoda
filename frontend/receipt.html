@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чеки — Zlagoda store</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Основний стиль -->
+    <link rel="stylesheet" href="css/receipt.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo"><i class="fa fa-shopping-basket"></i>Zlagoda</a>
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#products">Products</a>
+            <a href="index.html#categories">Categories</a>
+            <a href="index.html#reviews">Reviews</a>
+        </nav>
+        <div class="icons">
+            <i class="fa fa-user" id="login-btn"></i>
+        </div>
+    </header>
+
+    <!-- Receipts Section -->
+    <section class="features user-section receipts-section">
+        <h1 class="heading">Мої <span>чеки</span></h1>
+
+        <!-- Фільтр чеків -->
+        <div class="box-container filter-bar" style="margin-bottom:2rem;">
+            <input type="text" placeholder="Пошук за номером" class="filter-input">
+            <input type="date" id="from-date" class="filter-input">
+            <input type="date" id="to-date" class="filter-input">
+            <button class="btn">Фільтрувати</button>
+        </div>
+
+        <!-- Список чеків -->
+        <div class="box-container">
+            <!-- Приклад шаблону чека -->
+            <div class="box check-box">
+                <h3>Чек #54321</h3>
+                <p>Дата: 2025-06-10</p>
+                <p>Замовлення: #12345</p>
+                <p>Сума: $150.00</p>
+                <p>ПДВ (20%): $25.00</p>
+                <div class="form-actions">
+                    <a href="receipts/54321.pdf" class="btn" target="_blank"><i class="fa fa-file-pdf-o"></i> Завантажити PDF</a>
+                    <a href="#" class="btn"><i class="fa fa-print"></i> Роздрукувати</a>
+                </div>
+            </div>
+            <!-- Інші чеки динамічно -->
+        </div>
+
+        <!-- Пагінація чеків -->
+        <div class="pagination">
+            <a href="#" class="page-btn">«</a>
+            <a href="#" class="page-btn">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <a href="#" class="page-btn">»</a>
+        </div>
+
+        <!-- Повернення -->
+            <a href="index.html" class="btn bottom-btn" >На головну</a>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>

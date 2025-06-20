@@ -1,0 +1,559 @@
+/* products.css — стилі для управління товарами */
+
+:root{
+    --green: green;
+    --black: #130f40;
+    --light-color: #666;
+    --box-shadow: 0 .1rem 1rem rgba(200, 200, 200, 0.5);
+    --border: 2rem solid rgba(0,0,0.1);
+    --outline: .1rem solid rgba(200,200,200, 0.5);
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body{
+    background: #eee;
+}
+
+
+section{
+    padding: 2rem 9%;
+}
+
+.heading {
+    text-align: center;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color: var(--black);
+}
+
+.heading span {
+    background: var(--green);
+    color: #fff;
+    display: inline-block;
+    padding: .5rem 3rem;
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+}
+
+.btn {
+    border: .2rem solid var(--black);
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    color: var(--black);
+    cursor: pointer;
+    background: none;
+}
+
+.btn:hover{
+    background: var(--green);
+    color: #fff;
+}
+
+.header{
+    border: 0px solid;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+.header .logo i{
+    color: var(--green);
+}
+
+.header .navbar a{
+    font-size: 1.7rem;
+    margin: 0 2rem;
+    color: var(--black);
+}
+
+.header .navbar a:hover{
+    color: var(--green);
+}
+
+
+.header .icons div:hover{
+    background: var(--green);
+    color: white;
+}
+
+.heading {
+    margin-top: 5rem;
+}
+
+#menu-btn{
+    display: none;
+}
+/* Контейнер розділу */
+.products-section {
+  padding: 4rem 1rem;
+  background: var(--light-bg);
+}
+
+.products-section .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: flex-start;
+}
+
+.filter-input {
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  min-width: 12rem;
+}
+
+/* Таблиця товарів */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-size: 1.6rem;
+  color: var(--dark-color);
+  border-bottom: 1px solid var(--outline);
+}
+
+.data-table thead {
+  background: var(--green);
+}
+
+.data-table thead th {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Мінатюра товару */
+.prod-thumb {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Кнопки дій */
+.edit-btn,
+.delete-btn {
+  padding: 0rem 0.8rem;
+  font-size: 2rem;
+  background: none;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  color: var(--dark-color);
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+.delete-btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* Модальне вікно */
+.modal {
+  display: none;        /* hide by default */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;               /* показується, коли є клас active */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
+  max-width: 50rem;
+  width: 100%;
+  position: relative;
+}
+
+.modal-content .close-btn {
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  font-size: 2.4rem;
+  cursor: pointer;
+  color: var(--light-color);
+}
+
+.modal-content .close-btn:hover {
+  color: var(--dark-color);
+}
+
+/* Форма в модальному вікні */
+#product-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+#product-form label {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+}
+
+#product-form input,
+#product-form select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+}
+
+#product-form .form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+#product-form .btn {
+  padding: 0.8rem 2rem;
+  font-size: 1.6rem;
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 0.5rem;
+}
+
+#product-form .cancel-btn {
+  background: var(--light-color);
+  color: var(--dark-color);
+}
+
+#product-form .cancel-btn:hover {
+  background: var(--outline);
+}
+
+/* Контейнер розділу */
+.products-section {
+  padding: 4rem 1rem;
+  background: var(--light-bg);
+}
+
+/* Панель фільтрів */
+.products-section .filter-bar,
+.products-section .sales-report-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.filter-input {
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+/* Таблиця товарів */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  border-bottom: 1px solid var(--outline);
+  vertical-align: middle;
+}
+
+.data-table thead {
+  background: var(--green);
+}
+
+.data-table thead th {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Мінатюра товару */
+.prod-thumb {
+  max-width: 5rem;
+  max-height: 5rem;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Кнопки дій */
+.edit-btn,
+.delete-btn {
+  padding: 0.5rem 0.8rem;
+  font-size: 1.4rem;
+  background: none;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  color: var(--dark-color);
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.edit-btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+.delete-btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+
+
+#product-form input,
+#product-form select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+}
+
+#product-form .form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+#product-form .btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.4rem;
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 0.5rem;
+}
+
+#product-form .cancel-btn {
+  background: var(--light-color);
+  color: var(--dark-color);
+}
+
+#product-form .cancel-btn:hover {
+  background: var(--outline);
+}
+
+/* Пагінація */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.page-btn {
+  padding: 0.6rem 1rem;
+  font-size: 1.4rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.page-btn:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+.box-container .data-table{
+    width: 100%;
+}
+
+
+/* ==== Розтягнути контейнер і таблицю на всю ширину ==== */
+.products-section .box-container {
+  width: 100% !important;
+  max-width: none  !important;
+  margin: 0 auto !important;
+  padding: 0 1rem; /* якщо треба відступи з боків */
+}
+
+.data-table {
+  width: 100% !important;
+  table-layout: auto; /* колонки підлаштовуються під вміст */
+}
+
+/* Для першої колонки з картинкою задаємо фіксовану ширину, інші — під вміст */
+.data-table th:first-child,
+.data-table td:first-child {
+  width: 5rem;
+}
+
+:root {
+  --form-gap-row: 1.5rem;
+  --form-gap-col: 2rem;
+  --form-bg: #fff;
+  --form-radius: 1rem;
+  --form-padding: 2rem;
+  --label-color: var(--dark-color);
+  --input-bg: #fff;
+  --input-border: var(--outline);
+}
+
+/* Контейнер модалки */
+.modal-content {
+  background: var(--form-bg);
+  padding: var(--form-padding);
+  border-radius: var(--form-radius);
+  max-width: 50rem;
+  width: 100%;
+}
+
+/* Заголовок форми */
+#product-form-title {
+  margin: 0 0 1.5rem;
+  font-size: 2.2rem;
+  color: var(--black);
+  text-align: center;
+}
+
+/* Сітка форми */
+#product-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--form-gap-row) var(--form-gap-col);
+}
+
+/* Ширина на всю сторінку (для URL та кнопок) */
+#product-form .form-group.full,
+#product-form .form-actions {
+  grid-column: 1 / -1;
+}
+
+/* Група поля */
+#product-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Підпис поля */
+#product-form label {
+  margin-bottom: .5rem;
+  font-size: 1.4rem;
+  color: var(--label-color);
+  font-weight: 600;
+}
+
+/* Вхідні поля та селекти */
+#product-form input,
+#product-form select {
+  padding: .8rem 1rem;
+  font-size: 1.6rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: .5rem;
+  transition: border-color .2s ease;
+}
+#product-form input:focus,
+#product-form select:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+/* Додатковий клас, якщо треба повна ширина */
+.form-group.full label,
+.form-group.full input,
+.form-group.full select {
+  width: 100%;
+}
+
+/* Кнопки форми */
+#product-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Основна кнопка */
+#product-form .form-actions .btn[type="submit"] {
+  background: var(--green);
+  color: #fff;
+  border: none;
+}
+#product-form .form-actions .btn[type="submit"]:hover {
+  opacity: .9;
+}
+
+/* Кнопка відміни */
+#product-form .cancel-btn {
+  background: var(--light-color);
+  color: var(--black);
+  border: none;
+}
+#product-form .cancel-btn:hover {
+  background: var(--outline);
+}

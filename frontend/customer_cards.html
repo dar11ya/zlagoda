@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zlagoda — Управління Картами клієнтів</title>
+
+  <!-- Загальні стилі -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Спеціальні стилі для карт клієнтів -->
+  <link rel="stylesheet" href="css/cards.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- Header / Навігація -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <i class="fa fa-shopping-basket"></i> Zlagoda
+    </a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="customer_cards.html">Customer Cards</a>
+      <a href="receipts.html">Receipts</a>
+      <a href="employees.html">Employees</a>
+      <a href="customer_cards.html" class="active">Cards</a>
+    </nav>
+    <div class="icons">
+      <a href="profile.html" class="btn">
+        <i class="fa fa-user"></i> Мій Профіль
+      </a>
+      <a href="#" class="btn">
+        <i class="fa fa-sign-out"></i> Вийти
+      </a>
+    </div>
+  </header>
+
+  <!-- Головний контент -->
+  <main>
+    <section class="features cards-section">
+      <h1 class="heading">
+        <span>Управління</span> Картами клієнтів
+      </h1>
+
+      <!-- Панель фільтрів та дій -->
+      <div class="filter-bar">
+        <input type="text" id="search-surname"
+               class="filter-input"
+               placeholder="Пошук за прізвищем">
+        <input type="number" id="search-percent"
+               class="filter-input"
+               placeholder="Пошук за % знижки"
+               min="0" max="100">
+        <button id="filter-btn" class="btn">
+          <i class="fa fa-filter"></i> Фільтрувати
+        </button>
+        <button id="add-card-btn" class="btn">
+          <i class="fa fa-plus"></i> Додати Карту
+        </button>
+        <button id="print-btn" class="btn">
+          <i class="fa fa-print"></i> Друк
+        </button>
+        <button id="export-btn" class="btn">
+          <i class="fa fa-file"></i> Експорт CSV
+        </button>
+      </div>
+
+      <!-- Таблиця карт клієнтів -->
+      <div class="box-container">
+        <table id="cards-table" class="data-table">
+          <thead>
+            <tr>
+              <th>Номер картки</th>
+              <th>Прізвище Ім’я По батькові</th>
+              <th>Телефон</th>
+              <th>Адреса</th>
+              <th>% Знижки</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Тестові дані -->
+            <tr>
+              <td>1001</td>
+              <td>Іваненко Іван І.</td>
+              <td>+380501234567</td>
+              <td>м. Київ, вул. Хрещатик, 10</td>
+              <td>5%</td>
+              <td>
+                <button class="edit-btn">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="delete-btn">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>1002</td>
+              <td>Петрова Олена О.</td>
+              <td>+380631112233</td>
+              <td>м. Львів, просп. Свободи, 5</td>
+              <td>10%</td>
+              <td>
+                <button class="edit-btn">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="delete-btn">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Модальне вікно для Create / Edit -->
+  <div id="card-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <form id="card-form">
+        <h2 id="modal-title">Додати Карту клієнта</h2>
+
+        <div class="form-group">
+          <label for="card-number">Номер картки</label>
+          <input type="text" id="card-number"
+                 name="card_number" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="card-surname">Прізвище</label>
+          <input type="text" id="card-surname"
+                 name="surname" required>
+        </div>
+
+        <div class="form-group">
+          <label for="card-name">Ім’я</label>
+          <input type="text" id="card-name"
+                 name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="card-patronymic">По батькові</label>
+          <input type="text" id="card-patronymic"
+                 name="patronymic">
+        </div>
+
+        <div class="form-group">
+          <label for="card-phone">Телефон</label>
+          <input type="tel"
+                 id="card-phone"
+                 name="phone"
+                 pattern="\+380\d{9}"
+                 placeholder="+380XXXXXXXXX"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="card-city">Місто</label>
+          <input type="text" id="card-city"
+                 name="city" required>
+        </div>
+
+        <div class="form-group">
+          <label for="card-street">Вулиця, буд.</label>
+          <input type="text" id="card-street"
+                 name="street" required>
+        </div>
+
+        <div class="form-group">
+          <label for="card-zip">Індекс</label>
+          <input type="text" id="card-zip"
+                 name="zip_code" pattern="\d{5}"
+                 placeholder="XXXXX" required>
+        </div>
+
+        <div class="form-group">
+          <label for="card-percent">% Знижки</label>
+          <input type="number" id="card-percent"
+                 name="percent" min="0" max="100"
+                 required>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn">
+            Зберегти
+          </button>
+          <button type="button" class="btn cancel-btn">
+            Скасувати
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script
+    src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">
+  </script>
+  <script src="js/cards.js"></script>
+</body>
+</html>

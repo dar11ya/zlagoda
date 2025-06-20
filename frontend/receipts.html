@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zlagoda — Управління Чеками</title>
+
+  <!-- Головні стилі -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Спеціальні стилі для Receipts -->
+  <link rel="stylesheet" href="css/receipts.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVIGATION -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <i class="fa fa-shopping-basket"></i> Zlagoda
+    </a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="customer_cards.html">Customer Cards</a>
+      <a href="receipts.html">Receipts</a>
+      <a href="employees.html" class="active">Employees</a>
+      <a href="products_manage.html">Products Edit</a>
+    </nav>
+    <div class="icons">
+      <a href="profile.html" class="btn">
+        <i class="fa fa-user"></i> Мій Профіль
+      </a>
+      <a href="#" class="btn">
+        <i class="fa fa-sign-out"></i> Вийти
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="features receipts-section">
+      <h1 class="heading">
+        <span>Управління</span> Чеками
+      </h1>
+
+      <!-- Фільтри та дії -->
+      <div class="filter-bar">
+        <input type="text" id="filter-number"
+               class="filter-input"
+               placeholder="Пошук за номером чека">
+        <select id="filter-cashier" class="filter-input">
+          <option value="">Всі касири</option>
+          <option value="1">Іваненко Іван І.</option>
+          <option value="2">Петрова Олена О.</option>
+          <!-- …заповнити динамічно через JS -->
+        </select>
+        <select id="filter-card" class="filter-input">
+          <option value="">Всі картки</option>
+          <option value="1001">1001</option>
+          <option value="1002">1002</option>
+          <!-- …через JS -->
+        </select>
+        <button id="filter-btn" class="btn">Фільтрувати</button>
+        <button id="add-receipt-btn" class="btn">Додати Чек</button>
+        <button id="print-btn" class="btn">Друк</button>
+        <button id="export-btn" class="btn">Експорт CSV</button>
+      </div>
+
+      <!-- Дати та зведення -->
+      <div class="filter-bar">
+        <label>Створені від:</label>
+        <input type="date" id="date-from" class="filter-input">
+        <label>До:</label>
+        <input type="date" id="date-to" class="filter-input">
+        <button id="summary-btn" class="btn">
+          <i class="fa fa-chart-bar"></i> Показати Звіт
+        </button>
+      </div>
+
+      <!-- ТАБЛИЦЯ ЧЕКІВ -->
+      <div class="box-container">
+        <table id="receipts-table" class="data-table">
+          <thead>
+            <tr>
+              <th>Номер Чека</th>
+              <th>Дата</th>
+              <th>Касир</th>
+              <th>Картка</th>
+              <th>Загальна Сума</th>
+              <th>ПДВ</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Приклад рядків -->
+            <tr>
+              <td>5001</td>
+              <td>2025-06-18</td>
+              <td>Іваненко Іван І.</td>
+              <td>1001</td>
+              <td>1 200₴</td>
+              <td>200₴</td>
+              <td>
+                <button class="edit-btn">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="delete-btn">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>5002</td>
+              <td>2025-06-18</td>
+              <td>Петрова Олена О.</td>
+              <td>1002</td>
+              <td>850₴</td>
+              <td>141.67₴</td>
+              <td>
+                <button class="edit-btn">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="delete-btn">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- МОДАЛЬ: Додати / Редагувати Чек -->
+  <div id="receipt-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">×</span>
+      <form id="receipt-form">
+        <h2 id="modal-title">Створити Новий Чек</h2>
+        <div class="form-group">
+          <label for="receipt-number">Номер Чека</label>
+          <input type="text" id="receipt-number"
+                 name="number" readonly>
+        </div>
+        <div class="form-group">
+          <label for="receipt-date">Дата</label>
+          <input type="date" id="receipt-date"
+                 name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="receipt-cashier">Касир</label>
+          <select id="receipt-cashier"
+                  name="cashier" required>
+            <option value="">Оберіть касира</option>
+            <option value="1">Іваненко Іван І.</option>
+            <option value="2">Петрова Олена О.</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="receipt-card">Номер Картки (опційно)</label>
+          <select id="receipt-card" name="card">
+            <option value="">Без картки</option>
+            <option value="1001">1001</option>
+            <option value="1002">1002</option>
+          </select>
+        </div>
+
+        <!-- Таблиця Покупок у Чеку -->
+        <div class="items-container">
+          <h3>Товари в Чеку</h3>
+          <table id="items-table" class="data-table">
+            <thead>
+              <tr>
+                <th>UPC</th>
+                <th>Назва Товару</th>
+                <th>К-сть</th>
+                <th>Ціна</th>
+                <th>Разом</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JS додасть динамічно -->
+            </tbody>
+          </table>
+          <button type="button" id="add-item-btn" class="btn">
+            + Додати Товар
+          </button>
+        </div>
+
+        <!-- Підсумки -->
+        <div class="summary-group">
+          <p>Загальна сума: <span id="receipt-total">0₴</span></p>
+          <p>ПДВ (20%): <span id="receipt-vat">0₴</span></p>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn">Зберегти</button>
+          <button type="button" class="btn cancel-btn">
+            Скасувати
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬ: Деталі Чеку -->
+  <div id="details-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">×</span>
+      <h2>Деталі Чека <span id="details-number"></span></h2>
+      <p>Дата: <span id="details-date"></span></p>
+      <p>Касир: <span id="details-cashier"></span></p>
+      <p>Картка: <span id="details-card"></span></p>
+
+      <table id="details-items" class="data-table">
+        <thead>
+          <tr>
+            <th>UPC</th>
+            <th>Назва</th>
+            <th>К-сть</th>
+            <th>Ціна</th>
+            <th>Сума</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS підставить рядки -->
+        </tbody>
+      </table>
+
+      <div class="summary-group" style="margin-top:1.5rem;">
+        <p>Загальна сума: <span id="details-total">0₴</span></p>
+        <p>ПДВ: <span id="details-vat">0₴</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Бібліотеки та ваш скрипт -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script
+    src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">
+  </script>
+  <script src="js/receipts.js"></script>
+  <script src="js/actions-receipts.js"></script>
+</body>
+</html>

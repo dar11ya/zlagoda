@@ -1,0 +1,346 @@
+/* ===================================================================
+   cards.css — стиль для сторінки “Управління Картами клієнтів”
+   =================================================================== */
+
+:root {
+  --green: #008000;
+  --black: #130f40;
+  --light-color: #666;
+  --dark-color: #333;
+  --light-bg: #f7f7f7;
+  --outline: .1rem solid rgba(200,200,200,0.5);
+  --box-shadow: 0 .1rem 1rem rgba(200,200,200,0.5);
+}
+
+/* Скидання і базові стилі */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  transition: all .2s ease;
+}
+body {
+  background: var(--light-bg);
+}
+
+/* Секція карт */
+.cards-section {
+  padding: 4rem 8%;
+}
+.cards-section .heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.cards-section .heading span {
+  background: var(--green);
+  color: #fff;
+  padding: .5rem 3rem;
+  clip-path: polygon(100% 0, 93% 50%, 100% 100%, 0 100%, 7% 50%, 0 0);
+  display: inline-block;
+}
+
+/* Фільтр-бар */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.filter-bar input,
+.filter-bar select {
+  padding: .8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--outline);
+  border-radius: .5rem;
+  background: #fff;
+  min-width: 12rem;
+}
+
+/* Кнопки */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: .2rem solid var(--black);
+  padding: .8rem 2rem;
+  font-size: 1.6rem;
+  border-radius: .5rem;
+  background: none;
+  color: var(--black);
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* Таблиця карт */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border-radius: .5rem;
+  overflow: hidden;
+}
+.data-table thead {
+  background: var(--green);
+}
+.data-table thead th {
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 1rem;
+  text-transform: uppercase;
+  text-align: left;
+}
+.data-table th,
+.data-table td {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  border-bottom: 1px solid var(--outline);
+}
+.data-table tbody tr:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+/* Стовпець Дії */
+.data-table th:last-child,
+.data-table td:last-child {
+  width: 8rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Кнопки редагування/видалення */
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: 1px solid var(--outline);
+  border-radius: .5rem;
+  padding: .4rem .8rem;
+  font-size: 1.6rem;
+  color: var(--dark-color);
+  cursor: pointer;
+  margin: 0 .2rem;
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+.edit-btn i,
+.delete-btn i {
+  font-size: 1.4rem;
+  display: inline-block;
+}
+
+/* Контейнер із таблицею: дозволяє горизонтальний скролл */
+.cards-section .box-container {
+  overflow-x: auto;
+}
+
+/* Модальне вікно */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
+  width: 90%;
+  max-width: 50rem;
+  position: relative;
+}
+.modal-content .close-modal {
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  font-size: 2.4rem;
+  color: var(--light-color);
+  cursor: pointer;
+}
+.modal-content .close-modal:hover {
+  color: var(--dark-color);
+}
+
+/* Форма модалки */
+#card-form .form-group {
+  margin-bottom: 1.5rem;
+}
+#card-form label {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+  color: var(--dark-color);
+}
+#card-form input,
+#card-form select {
+  width: 100%;
+  padding: .8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--outline);
+  border-radius: .5rem;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+#card-form .cancel-btn {
+  background: var(--light-color);
+  color: var(--black);
+}
+#card-form .cancel-btn:hover {
+  background: var(--outline);
+}
+
+.heading{
+    margin-top: 5rem;
+}
+
+:root {
+  --form-gap-row: 1.5rem;
+  --form-gap-col: 2rem;
+  --form-bg: #fff;
+  --form-radius: 0.8rem;
+  --form-padding: 2rem;
+  --label-color: #333;
+  --input-border: 1px solid rgba(200,200,200,0.5);
+  --input-radius: 0.5rem;
+  --btn-bg: #130f40;
+  --btn-color: #fff;
+  --btn-radius: 0.5rem;
+}
+
+
+/* Місткість самого вікна */
+.modal-content {
+  background: var(--form-bg);
+  padding: var(--form-padding);
+  border-radius: var(--form-radius);
+  max-width: 45rem;
+  width: 100%;
+  position: relative;
+}
+
+/* Заголовок */
+#modal-title {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+  color: var(--btn-bg);
+  text-align: center;
+}
+
+/* Сітка форми */
+#card-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--form-gap-row) var(--form-gap-col);
+}
+
+/* Група одного поля */
+#card-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Підпис поля */
+#card-form label {
+  margin-bottom: .5rem;
+  font-size: 1.4rem;
+  color: var(--label-color);
+  font-weight: 600;
+}
+
+/* Інпуты й селекти */
+#card-form input,
+#card-form select {
+  padding: .8rem 1rem;
+  font-size: 1.6rem;
+  border: var(--input-border);
+  border-radius: var(--input-radius);
+  background: #fff;
+  transition: border-color .2s ease;
+}
+#card-form input:focus,
+#card-form select:focus {
+  outline: none;
+  border-color: var(--btn-bg);
+}
+
+/* Якщо треба поле на всю ширину */
+#card-form .full {
+  grid-column: 1 / -1;
+}
+
+/* Кнопки дій */
+#card-form .form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Кнопка “Зберегти” */
+#card-form .form-actions .btn[type="submit"] {
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: .8rem 2rem;
+  font-size: 1.6rem;
+}
+#card-form .form-actions .btn[type="submit"]:hover {
+  opacity: .9;
+}
+
+#card-form .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  /* якщо потрібно, щоб розгортався на весь ряд */
+  grid-column: 1 / -1;
+}
+
+/* Кнопка “Скасувати” */
+#card-form .cancel-btn {
+  background: #eee;
+  color: var(--label-color);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: .8rem 2rem;
+  font-size: 1.6rem;
+}
+#card-form .cancel-btn:hover {
+  background: rgba(200,200,200,0.5);
+}
+
+/* Закрити (×) */
+.modal-content .close-btn {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: rgba(50,50,50,0.6);
+}
+.modal-content .close-btn:hover {
+  color: rgba(50,50,50,1);
+}
