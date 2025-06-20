@@ -190,6 +190,7 @@
         <button id="show-categories-btn" class="btn" style="margin-top: 20px;">Показати всі категорії</button>
         <button id="show-add-category-form-btn" class="btn" style="margin-top: 20px;">Додати нову категорію</button>
         <button id="delete-category-btn" class="btn" style="margin-top: 20px;">Видалити категорію</button>
+        <button onclick="fetchStats()" class="btn" style="margin-top: 20px;">📊 Показати статистику по категоріях</button>
 
 
         <div id="add-category-form-container" style="display: none; margin-top: 20px;">
@@ -211,6 +212,7 @@
 
 
         <div id="categories-container" class="table-container" style="margin-top: 20px;"></div>
+        <div id="categoryStats" class="table-container"></div>
 
 
 
@@ -801,6 +803,41 @@
                 alert("Помилка: " + err.message);
             }
         });
+
+        function fetchStats() {
+            const container = document.getElementById("categoryStats");
+
+            // Перевірка: якщо вже є таблиця, видаляємо
+            if (container.innerHTML !== "") {
+                container.innerHTML = "";
+                return;
+            }
+
+            fetch("http://localhost:3000/api/products-by-category")
+                .then(res => res.json())
+                .then(data => {
+                    if (!Array.isArray(data)) {
+                        container.innerHTML = "Помилка при отриманні даних.";
+                        return;
+                    }
+
+                    let table = "<table border='1'><tr><th>Категорія</th><th>Кількість товарів</th></tr>";
+
+                    data.forEach(row => {
+                        table += `<tr>
+                    <td>${row.category}</td>
+                    <td>${row.total_products}</td>
+                </tr>`;
+                    });
+
+                    table += "</table>";
+                    container.innerHTML = table;
+                })
+                .catch(error => {
+                    console.error("Помилка:", error);
+                    container.innerHTML = "Сталася помилка при запиті.";
+                });
+        }
 
     </script>
 

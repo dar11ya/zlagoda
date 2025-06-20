@@ -52,4 +52,22 @@ router.delete("/category/:id", async (req, res) => {
 });
 
 
+ router.get("/products-by-category", async (req, res) => {
+     try {
+         const result = await db.any(`
+             SELECT
+                 c.category_name AS "category",
+                 COUNT(p.id_product) AS "total_products"
+             FROM "Product" p
+                      JOIN "Category" c ON p.category_number = c.category_number
+             GROUP BY c.category_name
+             ORDER BY COUNT(p.id_product) DESC
+        `);
+         res.json(result);
+     } catch (err) {
+         console.error("Помилка при виконанні SQL-запиту:", err);
+         res.status(500).json({ error: "Помилка при отриманні статистики" });
+     }
+ });
+
 module.exports = router;
