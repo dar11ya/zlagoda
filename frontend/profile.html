@@ -29,6 +29,7 @@
     <!-- Personal Profile Section -->
     <section class="features user-section">
         <h1 class="heading">Персональна <span>сторінка</span></h1>
+        <a href="index.html" class="btn home-btn">На головну</a>
         <div class="box-container">
             <div class="box" id="profile-view">
                 <button id="edit-btn" class="edit-btn"><i class="fa fa-pencil"></i> Редагувати</button>
@@ -50,8 +51,8 @@
                         <input type="email" id="email" name="email" value="ivan.ivanenko@example.com" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Телефон</label>
-                        <input type="tel" id="phone" name="phone" value="+380123456789" required>
+                        <label for="phon">Телефон</label>
+                        <input type="tel" id="phon" name="phone" value="+380123456789" required>
                     </div>
                     <div class="form-group">
                         <label for="dob">Дата народження</label>
@@ -76,7 +77,143 @@
                 </form>
             </div>
         </div>
-        <a href="index.html" class="btn home-btn">На головну</a>
+
+        <button id="load-products-btn" class="btn">Отримати всі товари</button>
+        <button id="show-add-product-form" class="btn">Додати новий товар</button>
+        <button id="delete-by-id-btn" class="btn" style="margin-top: 20px;">Видалити товар по ID</button>
+        <button id="filter-by-category-btn" class="btn" style="margin-top: 20px;">Показати товари категорії</button>
+        <button id="show-products-by-category-btn" class="btn" style="margin-top: 20px;">
+            Показати товари по категоріях
+        </button>
+
+
+
+
+        <div id="add-product-form-container" style="display: none; margin-top: 20px;">
+            <form id="add-product-form" class="user-form">
+                <div class="form-group">
+                    <label for="product-id">Id</label>
+                    <input type="number" id="product-id" name="product_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-name">Назва товару</label>
+                    <input type="text" id="product-name" name="product_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="characteristics">Характеристики</label>
+                    <input type="text" id="characteristics" name="characteristics">
+                </div>
+                <div class="form-group">
+                    <label for="category-number">Номер категорії</label>
+                    <input type="number" id="category-number" name="category_number" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Зберегти</button>
+                    <button type="button" class="btn cancel-btn" id="cancel-add-form">Скасувати</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="products-table-container" class="table-container"></div>
+        <div id="category-products-container" class="table-container" style="margin-top: 20px;"></div>
+        <div id="products-by-category-container" class="table-container" style="margin-top: 20px; display: none;"></div>
+
+        <button id="load-employees-btn" class="btn">Отримати всіх співробітників</button>
+        <button id="show-add-employee-form" class="btn">Додати нового співробітника</button>
+        <button id="delete-employee-btn" class="btn" style="margin-top: 20px;">Видалити працівника по ID</button>
+        <button id="show-employees-by-role-btn" class="btn" style="margin-top: 20px;">
+            Показати співробітників по ролях
+        </button>
+
+
+        <div id="add-employee-form-container" style="display: none; margin-top: 20px;">
+            <form id="add-employee-form" class="user-form">
+                <div class="form-group">
+                    <label for="employeeId">Id</label>
+                    <input type="number" id="employeeId" name="employeeId" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Прізвище</label>
+                    <input type="text" id="surname" name="surname" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Ім’я</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="patronymic">По батькові</label>
+                    <input type="text" id="patronymic" name="patronymic">
+                </div>
+                <div class="form-group">
+                    <label for="role">Посада</label>
+                    <input type="text" id="role" name="role" required>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Зарплата</label>
+                    <input type="number" id="salary" name="salary" required>
+                </div>
+                <div class="form-group">
+                    <label for="birth">Дата народження</label>
+                    <input type="date" id="birth" name="birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="start">Дата початку роботи</label>
+                    <input type="date" id="start" name="start" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">Місто</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="street">Вулиця</label>
+                    <input type="text" id="street" name="street" required>
+                </div>
+                <div class="form-group">
+                    <label for="zip">Поштовий індекс</label>
+                    <input type="text" id="zip" name="zip" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Зберегти</button>
+                    <button type="button" class="btn cancel-btn" id="cancel-add-employee">Скасувати</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div id="employees-table-container" class="table-container"></div>
+        <div id="employees-by-role-container" class="table-container" style="margin-top: 20px; display: none;"></div>
+
+        <button id="show-categories-btn" class="btn" style="margin-top: 20px;">Показати всі категорії</button>
+        <button id="show-add-category-form-btn" class="btn" style="margin-top: 20px;">Додати нову категорію</button>
+        <button id="delete-category-btn" class="btn" style="margin-top: 20px;">Видалити категорію</button>
+
+
+        <div id="add-category-form-container" style="display: none; margin-top: 20px;">
+            <form id="add-category-form" class="user-form">
+                <div class="form-group">
+                    <label for="category-num">ID категорії</label>
+                    <input type="text" id="category-num" name="category_num" required>
+                </div>
+                <div class="form-group">
+                    <label for="category-name">Назва категорії</label>
+                    <input type="text" id="category-name" name="category_name" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Зберегти</button>
+                    <button type="button" class="btn cancel-btn" id="cancel-add-category">Скасувати</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div id="categories-container" class="table-container" style="margin-top: 20px;"></div>
+
+
+
     </section>
 
     <!-- Script -->
@@ -94,6 +231,577 @@
             editBox.style.display = 'none';
             viewBox.style.display = 'block';
         });
+
+        const showAddBtn = document.getElementById('show-add-product-form');
+        const addFormContainer = document.getElementById('add-product-form-container');
+        const cancelAddBtn = document.getElementById('cancel-add-form');
+        const addForm = document.getElementById('add-product-form');
+
+        showAddBtn.addEventListener('click', () => {
+            addFormContainer.style.display = 'block';
+        });
+
+        cancelAddBtn.addEventListener('click', () => {
+            addForm.reset();
+            addFormContainer.style.display = 'none';
+        });
+
+        // Відправка форми
+        addForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+
+            const id_product = document.getElementById('product-id').value;
+            const product_name = document.getElementById('product-name').value;
+            const characteristics = document.getElementById('characteristics').value;
+            const category_number = document.getElementById('category-number').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/products', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({id_product, product_name, characteristics, category_number })
+                });
+
+                if (!response.ok) throw new Error('Помилка при додаванні товару');
+                const newProduct = await response.json();
+
+                alert(`✅ Товар додано: ${newProduct.product_name}`);
+                addForm.reset();
+                addFormContainer.style.display = 'none';
+            } catch (error) {
+                alert('❌ ' + error.message);
+                console.error(error);
+            }
+        });
+
+        const deleteByIdBtn = document.getElementById('delete-by-id-btn');
+
+        deleteByIdBtn.addEventListener('click', async () => {
+            const id = prompt("Введіть ID товару для видалення:");
+
+            if (id === null) {
+                // Користувач скасував prompt
+                return;
+            }
+
+            if (id.trim() === '') {
+                alert("ID не може бути порожнім!");
+                return;
+            }
+
+            const confirmDelete = confirm(`Ви впевнені, що хочете видалити товар з ID ${id.trim()}?`);
+            if (!confirmDelete) return;
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/products/${id.trim()}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.status === 204) {
+                    alert('Товар успішно видалено!');
+                    // Можеш тут оновити список товарів, якщо він є
+                } else {
+                    const errData = await response.json();
+                    alert('Помилка видалення: ' + (errData.error || response.statusText));
+                }
+            } catch (error) {
+                alert('Помилка: ' + error.message);
+            }
+        });
+
+
+        const loadBtn = document.getElementById('load-products-btn');
+        const tableContainer = document.getElementById('products-table-container');
+
+        loadBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/products'); // звертаємось до бекенду
+                if (!response.ok) throw new Error('Помилка при отриманні товарів');
+                const products = await response.json();
+
+                if (!products.length) {
+                    tableContainer.innerHTML = "<p>Немає товарів для відображення.</p>";
+                    return;
+                }
+
+                let tableHTML = `<table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Назва</th>
+                        <th>Характеристики</th>
+                        <th>Категорія</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+                products.forEach(product => {
+                    tableHTML += `
+                    <tr>
+                        <td>${product.id_product}</td>
+                        <td>${product.product_name}</td>
+                        <td>${product.characteristics}</td>
+                        <td>${product.category_number}</td>
+                    </tr>`;
+                });
+
+                tableHTML += "</tbody></table>";
+                tableContainer.innerHTML = tableHTML;
+
+            } catch (error) {
+                tableContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
+                console.error(error);
+            }
+        });
+
+        const filterByCategoryBtn = document.getElementById('filter-by-category-btn');
+        const categoryProductsContainer = document.getElementById('category-products-container');
+
+        filterByCategoryBtn.addEventListener('click', async () => {
+            const categoryNumber = prompt("Введіть номер категорії для відображення товарів:");
+
+            if (categoryNumber === null) return; // Скасовано
+
+            if (categoryNumber.trim() === '') {
+                alert("Номер категорії не може бути порожнім!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/products/category/${categoryNumber.trim()}`);
+                if (!response.ok) throw new Error('Помилка при отриманні товарів категорії');
+
+                const products = await response.json();
+
+                if (products.length === 0) {
+                    categoryProductsContainer.innerHTML = `<p>Товари в категорії ${categoryNumber.trim()} відсутні.</p>`;
+                    return;
+                }
+
+                let tableHTML = `<table border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Назва</th>
+                    <th>Характеристики</th>
+                    <th>Категорія</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+                products.forEach(product => {
+                    tableHTML += `
+                <tr>
+                    <td>${product.id_product}</td>
+                    <td>${product.product_name}</td>
+                    <td>${product.characteristics}</td>
+                    <td>${product.category_number}</td>
+                </tr>`;
+                });
+
+                tableHTML += '</tbody></table>';
+                categoryProductsContainer.innerHTML = tableHTML;
+
+            } catch (error) {
+                categoryProductsContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
+                console.error(error);
+            }
+        });
+
+        const showProductsByCategoryBtn = document.getElementById("show-products-by-category-btn");
+        const productsByCategoryContainer = document.getElementById("products-by-category-container");
+
+        showProductsByCategoryBtn.addEventListener("click", async () => {
+            if (productsByCategoryContainer.style.display === "block") {
+                productsByCategoryContainer.style.display = "none";
+                productsByCategoryContainer.innerHTML = "";
+                return;
+            }
+
+            try {
+                const res = await fetch("http://localhost:3000/api/products/by-category");
+                const data = await res.json();
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    productsByCategoryContainer.innerHTML = "<p>Товарів не знайдено.</p>";
+                    productsByCategoryContainer.style.display = "block";
+                    return;
+                }
+
+                // Групування товарів по категоріях
+                const categoriesMap = {};
+                data.forEach(product => {
+                    const category = product.category_name || "Без категорії";
+                    if (!categoriesMap[category]) categoriesMap[category] = [];
+                    categoriesMap[category].push(product);
+                });
+
+                let html = "";
+
+                for (const [categoryName, products] of Object.entries(categoriesMap)) {
+                    html += `<h3>Категорія: ${categoryName}</h3>`;
+                    html += `<table class="product-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Назва товару</th>
+                        <th>Характеристики</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+                    products.forEach(p => {
+                        html += `
+                    <tr>
+                        <td>${p.id_product}</td>
+                        <td>${p.product_name}</td>
+                        <td>${p.characteristics || ""}</td>
+                    </tr>`;
+                    });
+
+                    html += `</tbody></table><br>`;
+                }
+
+                productsByCategoryContainer.innerHTML = html;
+                productsByCategoryContainer.style.display = "block";
+            } catch (err) {
+                productsByCategoryContainer.innerHTML = `<p style="color:red;">Помилка: ${err.message}</p>`;
+                productsByCategoryContainer.style.display = "block";
+            }
+        });
+
+
+        const showAddEmployeeBtn = document.getElementById('show-add-employee-form');
+        const addEmployeeFormContainer = document.getElementById('add-employee-form-container');
+        const cancelAddEmployeeBtn = document.getElementById('cancel-add-employee');
+        const addEmployeeForm = document.getElementById('add-employee-form');
+
+        showAddEmployeeBtn.addEventListener('click', () => {
+            addEmployeeFormContainer.style.display = 'block';
+        });
+
+        cancelAddEmployeeBtn.addEventListener('click', () => {
+            addEmployeeForm.reset();
+            addEmployeeFormContainer.style.display = 'none';
+        });
+
+        addEmployeeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                id_employee: addEmployeeForm.employeeId.value,
+                empl_surname: addEmployeeForm.surname.value,
+                empl_name: addEmployeeForm.name.value,
+                empl_patronymic: addEmployeeForm.patronymic.value,
+                empl_role: addEmployeeForm.role.value,
+                salary: Number(addEmployeeForm.salary.value),
+                date_of_birth: addEmployeeForm.birth.value,
+                date_of_start: addEmployeeForm.start.value,
+                phone_number: addEmployeeForm.phone.value,
+                city: addEmployeeForm.city.value,
+                street: addEmployeeForm.street.value,
+                zip_code: addEmployeeForm.zip.value,
+            };
+
+            try {
+                const res = await fetch('http://localhost:3000/api/employee', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (!res.ok) {
+                    const errorData = await res.json();
+                    throw new Error(errorData.error || 'Невідома помилка');
+                }
+
+                alert('Працівника додано!');
+                addEmployeeForm.reset();
+                addEmployeeFormContainer.style.display = 'none';
+            } catch (err) {
+                alert('Помилка: ' + err.message);
+            }
+        });
+
+
+        const employeesBtn = document.getElementById('load-employees-btn');
+        const employeesContainer = document.getElementById('employees-table-container');
+
+        employeesBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/employee');
+                if (!response.ok) throw new Error('Помилка при отриманні працівників');
+                const employees = await response.json();
+
+                if (!employees.length) {
+                    employeesContainer.innerHTML = "<p>Немає працівників для відображення.</p>";
+                    return;
+                }
+
+                let tableHTML = `<table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Прізвище</th>
+                        <th>Ім'я</th>
+                        <th>По батькові</th>
+                        <th>Роль</th>
+                        <th>Зарплата</th>
+                        <th>Дата народження</th>
+                        <th>Дата початку</th>
+                        <th>Телефон</th>
+                        <th>Місто</th>
+                        <th>Вулиця</th>
+                        <th>Індекс</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+                employees.forEach(emp => {
+                    tableHTML += `
+                    <tr>
+                        <td>${emp.id_employee}</td>
+                        <td>${emp.empl_surname}</td>
+                        <td>${emp.empl_name}</td>
+                        <td>${emp.empl_patronymic}</td>
+                        <td>${emp.empl_role}</td>
+                        <td>${emp.salary}</td>
+                        <td>${emp.date_of_birth}</td>
+                        <td>${emp.date_of_start}</td>
+                        <td>${emp.phone_number}</td>
+                        <td>${emp.city}</td>
+                        <td>${emp.street}</td>
+                        <td>${emp.zip_code}</td>
+                    </tr>`;
+                });
+
+                tableHTML += "</tbody></table>";
+                employeesContainer.innerHTML = tableHTML;
+
+            } catch (error) {
+                employeesContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
+                console.error(error);
+            }
+        });
+
+        const deleteEmployeeBtn = document.getElementById('delete-employee-btn');
+
+        deleteEmployeeBtn.addEventListener('click', async () => {
+            const id = prompt("Введіть ID працівника, якого потрібно видалити:");
+
+            if (id === null) return; // Скасовано
+            if (id.trim() === '') {
+                alert("ID не може бути порожнім!");
+                return;
+            }
+
+            const confirmed = confirm(`Ви впевнені, що хочете видалити працівника з ID ${id.trim()}?`);
+            if (!confirmed) return;
+
+            try {
+                const res = await fetch(`http://localhost:3000/api/employee/${id.trim()}`, {
+                    method: 'DELETE',
+                });
+
+                if (res.status === 204) {
+                    alert("Працівника успішно видалено!");
+                    // Тут можна оновити список працівників
+                } else {
+                    const err = await res.json();
+                    alert("Помилка: " + (err.error || res.statusText));
+                }
+            } catch (err) {
+                alert("Помилка: " + err.message);
+            }
+        });
+
+        const showEmployeesByRoleBtn = document.getElementById("show-employees-by-role-btn");
+        const employeesByRoleContainer = document.getElementById("employees-by-role-container");
+
+        showEmployeesByRoleBtn.addEventListener("click", async () => {
+            if (employeesByRoleContainer.style.display === "block") {
+                employeesByRoleContainer.style.display = "none";
+                employeesByRoleContainer.innerHTML = "";
+                return;
+            }
+
+            try {
+                const res = await fetch("http://localhost:3000/api/employees/by-role");
+                const data = await res.json();
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    employeesByRoleContainer.innerHTML = "<p>Співробітників не знайдено.</p>";
+                    employeesByRoleContainer.style.display = "block";
+                    return;
+                }
+
+                const roleMap = {};
+                data.forEach(emp => {
+                    const role = emp.empl_role || "Без ролі";
+                    if (!roleMap[role]) roleMap[role] = [];
+                    roleMap[role].push(emp);
+                });
+
+                let html = "";
+
+                for (const [role, employees] of Object.entries(roleMap)) {
+                    html += `<h3>Роль: ${role}</h3>`;
+                    html += `<table class="product-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Прізвище</th>
+                        <th>Ім’я</th>
+                        <th>По-батькові</th>
+                        <th>Телефон</th>
+                        <th>Дата народження</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+                    employees.forEach(e => {
+                        html += `
+                    <tr>
+                        <td>${e.id_employee}</td>
+                        <td>${e.empl_surname}</td>
+                        <td>${e.empl_name}</td>
+                        <td>${e.empl_patronymic}</td>
+                        <td>${e.phone_number}</td>
+                        <td>${e.date_of_birth}</td>
+                    </tr>`;
+                    });
+
+                    html += `</tbody></table><br>`;
+                }
+
+                employeesByRoleContainer.innerHTML = html;
+                employeesByRoleContainer.style.display = "block";
+            } catch (err) {
+                employeesByRoleContainer.innerHTML = `<p style="color:red;">Помилка: ${err.message}</p>`;
+                employeesByRoleContainer.style.display = "block";
+            }
+        });
+
+        // категорії
+
+        const showCategoriesBtn = document.getElementById('show-categories-btn');
+        const categoriesContainer = document.getElementById('categories-container');
+
+        showCategoriesBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/category'); // 👈 твій API-ендпоінт
+                if (!response.ok) throw new Error('Не вдалося завантажити категорії');
+
+                const categories = await response.json();
+
+                if (categories.length === 0) {
+                    categoriesContainer.innerHTML = '<p>Категорій не знайдено.</p>';
+                    return;
+                }
+
+                let tableHTML = `<table class="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Назва категорії</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+                categories.forEach(category => {
+                    tableHTML += `
+                <tr>
+                    <td>${category.category_number}</td>
+                    <td>${category.category_name}</td>
+                </tr>`;
+                });
+
+                tableHTML += `</tbody></table>`;
+                categoriesContainer.innerHTML = tableHTML;
+            } catch (err) {
+                categoriesContainer.innerHTML = `<p style="color: red;">${err.message}</p>`;
+            }
+        });
+
+        const showAddCategoryFormBtn = document.getElementById('show-add-category-form-btn');
+        const addCategoryFormContainer = document.getElementById('add-category-form-container');
+        const cancelAddCategoryBtn = document.getElementById('cancel-add-category');
+        const addCategoryForm = document.getElementById('add-category-form');
+
+        showAddCategoryFormBtn.addEventListener('click', () => {
+            addCategoryFormContainer.style.display = 'block';
+        });
+
+        cancelAddCategoryBtn.addEventListener('click', () => {
+            addCategoryForm.reset();
+            addCategoryFormContainer.style.display = 'none';
+        });
+
+        addCategoryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                category_number: addCategoryForm.category_num.value.trim(),
+                category_name: addCategoryForm.category_name.value.trim()
+            };
+
+            try {
+                const res = await fetch('http://localhost:3000/api/category', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!res.ok) {
+                    const error = await res.json();
+                    throw new Error(error.error || "Невідома помилка");
+                }
+
+                alert("Категорію успішно додано!");
+                addCategoryForm.reset();
+                addCategoryFormContainer.style.display = 'none';
+            } catch (err) {
+                alert("Помилка: " + err.message);
+            }
+        });
+
+        const deleteCategoryBtn = document.getElementById('delete-category-btn');
+
+        deleteCategoryBtn.addEventListener('click', async () => {
+            const categoryId = prompt("Введіть ID (category_number) категорії, яку потрібно видалити:");
+
+            if (categoryId === null) return; // користувач натиснув «Скасувати»
+            if (categoryId.trim() === "") {
+                alert("ID не може бути порожнім!");
+                return;
+            }
+
+            const confirmDelete = confirm(`Ви точно хочете видалити категорію з ID ${categoryId.trim()}?`);
+            if (!confirmDelete) return;
+
+            try {
+                const res = await fetch(`http://localhost:3000/api/category/${categoryId.trim()}`, {
+                    method: 'DELETE'
+                });
+
+                if (res.status === 204) {
+                    alert("Категорію успішно видалено!");
+                } else {
+                    const err = await res.json();
+                    alert("Помилка: " + (err.error || "Невідома помилка"));
+                }
+            } catch (err) {
+                alert("Помилка: " + err.message);
+            }
+        });
+
     </script>
 
 </body>
