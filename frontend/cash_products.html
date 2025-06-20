@@ -1,0 +1,105 @@
+<!-- cash_products.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Zlagoda — Перегляд Товарів</title>
+
+  <!-- ваші загальні стилі -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- успадкуємо частину стилів з products_manage -->
+  <link rel="stylesheet" href="css/products_manage.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="cash_index.html" class="logo"><i class="fa fa-shopping-basket"></i>Zlagoda</a>
+    <nav class="navbar">
+      <a href="cash_index.html">Home</a>
+      <a href="cash_creating_receipts.html">Receipts Create</a>
+      <a href="cash_products.html" class="active">Products</a>
+      <a href="cash_customer_cards.html">Customer Cards</a>
+    </nav>
+    <div class="user-menu">
+      <a href="cash_profile.html" class="btn"><i class="fa fa-user-circle-o"></i>Мій Профіль</a>
+      <a href="logout.html" class="btn"><i class="fa fa-sign-out"></i>Вийти</a>
+    </div>
+  </header>
+
+  <!-- Products Viewer -->
+  <section class="products-section">
+    <h1 class="heading">Перегляд <span>Товарів</span></h1>
+
+    <!-- Фільтри -->
+    <div class="filter-bar">
+      <input type="text" id="filter-name" placeholder="Пошук за назвою" class="filter-input">
+      <select id="filter-category" class="filter-input">
+        <option value="">Всі категорії</option>
+        <option value="fruits">Фрукти</option>
+        <option value="vegetables">Овочі</option>
+        <option value="dairy">Молочні</option>
+      </select>
+      <input type="text" id="filter-manufacturer" placeholder="Пошук за виробником" class="filter-input">
+    </div>
+
+    <!-- Таблиця товарів -->
+    <div class="box-container">
+      <table id="products-table" class="data-table">
+        <thead>
+          <tr>
+            <th>Фото</th>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Виробник</th>
+            <th>Категорія</th>
+            <th>Тип</th>
+            <th>Ціна</th>
+            <th>Знижка %</th>
+            <th>Ціна зі знижкою</th>
+            <th>Кількість</th>
+            <th>ПДВ %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Сюди вставте ті ж самі <tr>…</tr> з products_manage.html, але без стовпчика «Дії» -->
+          <tr>
+            <td><img src="https://varus.ua/img/product/1140/1140/139849" alt="Яблука" class="prod-thumb"></td>
+            <td>1</td>
+            <td>Яблука</td>
+            <td>Садовод АГ</td>
+            <td>fruits</td>
+            <td>Світлі</td>
+            <td>40₴</td>
+            <td>10%</td>
+            <td>36₴</td>
+            <td>100 шт</td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td><img src="https://varus.ua/img/product/1140/1140/124144" alt="Морква" class="prod-thumb"></td>
+            <td>2</td>
+            <td>Морква</td>
+            <td>Овощевод УК</td>
+            <td>vegetables</td>
+            <td>Помаранчева</td>
+            <td>30₴</td>
+            <td>0%</td>
+            <td>30₴</td>
+            <td>200 шт</td>
+            <td>20%</td>
+          </tr>
+          <!-- … решта рядків … -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- JS бібліотеки -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</body>
+</html>
