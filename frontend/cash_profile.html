@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персональна сторінка — Zlagoda store</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Основний стиль -->
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo"> <i class="fa fa-shopping-basket"></i>Zlagoda </a>
+            <nav class="navbar">
+            <a href="cash_index.html">Home</a>
+        <a href="cash_creating_receipts.html">Receipts Create</a>
+        <a href="cash_products.html">Products</a>
+        <a href="cash_castomer_cards.html">Customer Cards</a>
+        </nav>
+        <div class="fa fa-user"></div>
+        </div>
+    </header>
+
+    <!-- Personal Profile Section -->
+    <section class="features user-section">
+        <h1 class="heading">Персональна <span>сторінка</span></h1>
+        <div class="box-container">
+            <div class="box" id="profile-view">
+                <button id="edit-btn" class="edit-btn"><i class="fa fa-pencil"></i> Редагувати</button>
+                <p><strong>ПІБ:</strong> Іван Іваненко</p>
+                <p><strong>Email:</strong> ivan.ivanenko@example.com</p>
+                <p><strong>Телефон:</strong> +380123456789</p>
+                <p><strong>Дата народження:</strong> 1990-01-01</p>
+                <p><strong>Адреса:</strong> м. Київ, вул. Хрещатик, 1</p>
+                <p><strong>Роль:</strong> Касир</p>
+            </div>
+            <div class="box" id="profile-edit" style="display:none;">
+                <form class="user-form" id="edit-form">
+                    <div class="form-group">
+                        <label for="full-name">ПІБ</label>
+                        <input type="text" id="full-name" name="full-name" value="Іван Іваненко" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="ivan.ivanenko@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" value="+380123456789" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Дата народження</label>
+                        <input type="date" id="dob" name="dob" value="1990-01-01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Адреса</label>
+                        <input type="text" id="address" name="address" value="м. Київ, вул. Хрещатик, 1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="old-password">Старий пароль</label>
+                        <input type="password" id="old-password" name="old-password" placeholder="••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Новий пароль</label>
+                        <input type="password" id="new-password" name="new-password" placeholder="••••••">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Зберегти</button>
+                        <button type="button" class="btn cancel-btn" id="cancel-btn">Скасувати</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <a href="index.html" class="btn home-btn">На головну</a>
+    </section>
+
+    <!-- Script -->
+    <script>
+        const editBtn = document.getElementById('edit-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const viewBox = document.getElementById('profile-view');
+        const editBox = document.getElementById('profile-edit');
+
+        editBtn.addEventListener('click', () => {
+            viewBox.style.display = 'none';
+            editBox.style.display = 'block';
+        });
+        cancelBtn.addEventListener('click', () => {
+            editBox.style.display = 'none';
+            viewBox.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

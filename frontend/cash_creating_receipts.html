@@ -1,0 +1,93 @@
+<!-- cashier.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Zlagoda — Створення Чека</title>
+  <link rel="stylesheet" href="css/style.css">        <!-- ваш загальний стиль -->
+  <link rel="stylesheet" href="css/cashier.css">      <!-- сторінка касира -->
+</head>
+<body>
+
+  <!-- головна шапка з навігацією -->
+  <header class="header">
+    <a href="#" class="logo"><i class="fas fa-shopping-basket"></i>Zlagoda</a>
+    <nav class="navbar">
+      <a href="cash_index.html">Home</a>
+      <a href="cash_creating_receipts.html">Receipts Create</a>
+      <a href="cash_products.html">Products</a>
+      <a href="cash_castomer_cards.html">Customer Cards</a>
+    </nav>
+    <div class="icons">
+      <button class="btn">Мій Профіль</button>
+      <button class="btn">Вийти</button>
+    </div>
+  </header>
+
+  <section class="cashier-section">
+    <h1 class="heading"><span>Створення Чека</span></h1>
+
+    <!-- 1) Основна форма даних чека -->
+    <div class="receipt-meta">
+      <div class="form-group">
+        <label for="receipt-number">Номер Чека</label>
+        <input type="text" id="receipt-number" readonly>
+      </div>
+      <div class="form-group">
+        <label for="receipt-date">Дата</label>
+        <input type="date" id="receipt-date" required>
+      </div>
+      <div class="form-group">
+        <label for="cashier-name">Касир</label>
+        <input type="text" id="cashier-name" readonly>
+      </div>
+      <div class="form-group">
+        <label for="receipt-card">Карта Клієнта</label>
+        <select id="receipt-card">
+          <option value="">Без картки</option>
+          <!-- JS підставить інші картки -->
+        </select>
+      </div>
+    </div>
+
+    <!-- 2) Додавання товару -->
+    <div class="item-entry">
+      <input type="text" id="item-upc" placeholder="Введіть UPC">
+      <input type="number" id="item-qty" min="1" value="1">
+      <button id="add-item-btn" class="btn">Додати Товар</button>
+    </div>
+
+    <!-- 3) Таблиця з товарами в чеку -->
+    <table id="receipt-items-table" class="data-table">
+      <thead>
+        <tr>
+          <th>UPC</th>
+          <th>Назва</th>
+          <th>Ціна</th>
+          <th>К-сть</th>
+          <th>Разом</th>
+          <th>Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- рядки додасть JS -->
+      </tbody>
+    </table>
+
+    <!-- 4) Підсумки -->
+    <div class="receipt-summary">
+      <p>Сума: <span id="sum-total">0₴</span></p>
+      <p>ПДВ (20%): <span id="sum-vat">0₴</span></p>
+    </div>
+
+    <!-- 5) Завершення чека -->
+    <div class="form-actions">
+      <button id="save-receipt" class="btn">Завершити Чек</button>
+      <button id="cancel-receipt" class="btn cancel-btn">Скасувати</button>
+    </div>
+  </section>
+
+  <script src="js/cashier/cashier.js"></script>  <!-- сюди потім підключимо логіку -->
+</body>
+</html>

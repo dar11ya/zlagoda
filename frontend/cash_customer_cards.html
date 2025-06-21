@@ -1,0 +1,100 @@
+<!-- cash_customer_cards.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Zlagoda — Перегляд Карт клієнтів</title>
+
+  <!-- Загальні стилі -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Стилі для карт клієнтів -->
+  <link rel="stylesheet" href="css/cards.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+
+  <!-- Header / Навігація -->
+  <header class="header">
+    <a href="cash_index.html" class="logo">
+      <i class="fa fa-shopping-basket"></i> Zlagoda
+    </a>
+    <nav class="navbar">
+      <a href="cash_index.html">Home</a>
+      <a href="cash_creating_receipts.html">Receipts Create</a>
+      <a href="cash_products.html">Products</a>
+      <a href="cash_customer_cards.html" class="active">Customer Cards</a>
+    </nav>
+    <div class="icons">
+      <a href="cash_profile.html" class="btn">
+        <i class="fa fa-user"></i> Мій Профіль
+      </a>
+      <a href="logout.html" class="btn">
+        <i class="fa fa-sign-out"></i> Вийти
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="features cards-section">
+      <h1 class="heading">
+        <span>Перегляд</span> Карт клієнтів
+      </h1>
+
+      <!-- Фільтр-бар -->
+      <div class="filter-bar">
+        <input type="text"
+               id="filter-surname"
+               class="filter-input"
+               placeholder="Пошук за прізвищем">
+        <input type="number"
+               id="filter-percent"
+               class="filter-input"
+               placeholder="Пошук за % знижки"
+               min="0" max="100">
+      </div>
+
+      <!-- Таблиця карт клієнтів -->
+      <div class="box-container">
+        <table id="cards-table" class="data-table">
+          <thead>
+            <tr>
+              <th>Номер картки</th>
+              <th>Прізвище Ім’я По батькові</th>
+              <th>Телефон</th>
+              <th>Адреса</th>
+              <th>% Знижки</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Приклад даних -->
+            <tr>
+              <td>1001</td>
+              <td>Іваненко Іван І.</td>
+              <td>+380501234567</td>
+              <td>м. Київ, вул. Хрещатик, 10</td>
+              <td>5%</td>
+            </tr>
+            <tr>
+              <td>1002</td>
+              <td>Петрова Олена О.</td>
+              <td>+380631112233</td>
+              <td>м. Львів, просп. Свободи, 5</td>
+              <td>10%</td>
+            </tr>
+            <!-- … інші рядки … -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS бібліотеки -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script
+    src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">
+  </script>
+</body>
+</html>
