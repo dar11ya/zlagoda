@@ -51,11 +51,12 @@ function isActiveForm($formName, $activeForm) {
                <input type="text" name="name" placeholder="Name" required>
                <input type="email" name="email" placeholder="Email" required>
                <input type="password" name="password" placeholder="Password" required>
-               <select name="role" required>
-                    <option value="">--Select Role--</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-               </select>
+               <input type="text" id="reg-name" name="name" placeholder="Name" required>
+               <input type="email" id="reg-email" name="email" placeholder="Email" required>
+                <input type="date"   id="birthdate" name="birthdate" required>
+               <input type="password" id="reg-password" name="password" placeholder="Password" required>
+            <!-- приховане поле для ролі -->
+               <input type="hidden" id="role" name="role" value="user">
                <button type="submit" name="register">Register</button>
                <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
             </form>
